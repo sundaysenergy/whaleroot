@@ -1,0 +1,162 @@
+/* @override 
+	http://whalereviews.com/sites/all/themes/zenzen/css/colors.css
+	http://www.whalereviews.com/sites/all/themes/zenzen/css/colors.css
+*/
+
+/**
+*  COLORS AND BACKGROUNDS
+*
+*  copy this file to your theme and alter to change colors and backgrounds
+*/
+
+table tr.odd {
+  	background: #fff;
+	}
+
+body {
+  	background: #fff url(../images/body_bg_blue_ds.png) repeat-y center top;
+	}
+
+/* text color of main content ******************/
+
+#main {
+  	color: #636466;
+	}
+
+a, a:link, a:visited {
+  	color: #f7931d;
+	}
+
+a:hover, a:focus {
+  	color: #c1c1c2;
+	}
+
+a:active, a.active { 
+  	color: #c1c1c2; 
+	}
+
+h1#site-name, h1#site-name a, h1#site-name a:hover {
+  	color: #636466;
+	}
+
+h2, h2 a, h2 a:hover, .block h3, .block h3 a {
+  	color: #636466;
+	}
+	
+/**********************************************************
+  Core defined colors
+  these are colors defined by Drupal core module css files
+  brought here for easy central overriding
+ *********************************************************/
+ 
+/* from system.css ********************/
+
+tr.even, tr.odd {
+  	background-color: #eee;
+  	border-bottom-color: #ccc;
+	}
+	
+td.active {
+  	background-color: #ddd;
+	}
+	
+tbody {
+  	border-top-color: #ccc;
+	}
+	
+tbody th {
+  	border-bottom-color: #ccc;
+	}
+	
+thead th {
+  	border-bottom-color: #ccc;
+	}
+
+.error {
+  	color: #f00;
+	}
+	
+div.error {
+  	border-color: #d77;
+	}
+	
+div.error, tr.error {
+  	background-color: #fed09f;
+  	color: #200;
+	}
+	
+div.warning, tr.warning {
+  	background-color: #ffd;
+	}
+	
+div.ok, tr.ok {
+  	background-color: #dfd;
+	}	
+	
+.form-item input.error, .form-item textarea.error, .form-item select.error {
+  	background: #f7931d;
+  	border: 2px solid #f7931d;
+  	color: #fff;
+	}
+
+.marker, .form-required {
+  	color: #f7931d;
+	}
+
+td.menu-disabled {
+  	background: #ccc;
+	}
+
+.admin-panel h3, .admin-panel .body {
+  	border-color: #666;
+	}
+
+/* Comments ******************/
+
+div.comment {
+  	background-color: #fff;
+	}
+
+div.comment-unpublished {
+  	background-color: #FFF;
+	}
+
+div.comment-by-author {
+  	background: none;
+  	border-color: #666;
+	}
+
+/* Tab navigation ******************/
+
+ul.primary {
+  	border-bottom-color: #bbb;
+	}
+	
+ul.primary li a {
+  	background-color: #ddd;
+  	border-color: #bbb;
+	}
+	
+ul.primary li.active a {
+  	background-color: #fff; /* <-- probably the same as the page background */
+  	border-color: #bbb;
+  	border-bottom-color: #fff; /* <-- creates the "tab" effect */
+	}
+	
+ul.primary li a:hover {
+  	background-color: #eee;
+  	border-color: #ccc;
+  	border-bottom-color: #eee;
+	}
+	
+ul.secondary {
+  	border-bottom: #bbb;
+	}
+	
+ul.secondary li {
+  	border-right-color: #ccc;
+	}
+	
+ul.secondary a.active {
+  	border-bottom-color: #999;
+	}

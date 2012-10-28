@@ -1,0 +1,77 @@
+@CHARSET "UTF-8";
+/* $Id: colors.css,v 1.1.2.1 2007/06/19 22:30:16 zoo33 Exp $ */
+
+
+body {
+  background-color: #EEE;
+}
+
+/* LAYOUT BLOCKS */
+
+#page {
+  border: 1px solid #D9D9D6;
+}
+
+#header {
+  background: #FFF url(../images/header_900.png) bottom center no-repeat;
+}
+
+#container {
+  
+}
+
+/* Use a background image for #container to get "faux columns" that appear to be of 
+ * equal height (http://alistapart.com/articles/fauxcolumns/). This will only work
+ * on fixed width layouts (see layout.css).
+ * If you want to be able to use both two and three columns with this theme you need
+ * to provide different background images for these three cases:
+ */
+body.both-sidebars #container {
+  background: #FFF url(../images/background_both_900.png) repeat-y;
+}
+body.sidebar-left #container {
+  background: #FFF url(../images/background_left_900.png) repeat-y;
+}
+body.sidebar-right #container {
+  background: #FFF url(../images/background_right_900.png) repeat-y;
+}
+
+.sidebar {
+
+}
+
+#content {
+  
+}
+
+#footer {
+  background: #FFF url(../images/footer_900.png) top center no-repeat;
+}
+
+
+/* TEXT */
+
+a {
+  color: #06A;
+}
+
+a:visited {
+  color: #159;
+}
+
+#site-name a {
+  color: #000;
+}
+
+h2.title a {
+  color: #000;
+}
+
+.breadcrumb, .breadcrumb a {
+	color: #AAA;
+}
+
+#footer, #footer a {
+  color: #999;
+}
+

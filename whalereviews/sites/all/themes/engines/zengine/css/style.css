@@ -1,0 +1,436 @@
+@CHARSET "UTF-8";
+
+/**
+*  $Id: style.css,v 1.1.2.3 2007/06/07 14:25:12 jjeff Exp $
+*  @file
+*  the default style.css file with most of the design information
+*/
+
+/* Common styles */
+
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+		
+h1.title, h1.title a, h1.title a:hover {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 200%;
+  margin:0;
+  margin-bottom:0px;
+  line-height:normal;
+}
+
+/* Header styles */
+ 
+#logo-title {
+  padding: 10px 20px 0 20px;
+  position: relative;
+}
+
+#logo {
+  vertical-align: baseline;
+}
+
+#name-and-slogan {
+  display: inline;
+}
+
+#site-name {
+  margin: 0;
+  display: inline;
+}
+
+#site-name a, #site-name a:hover {
+  font-family: "Trebuchet MS", Arial, Verdana, Sans-serif;
+  font-weight: normal;
+  font-size: 176%;
+  margin: 0;
+  padding: 0;
+}
+
+#site-slogan {
+  color: #aaa;
+  margin: 0;
+  font-size: 85%;
+  margin-left:20px;
+}
+
+#search {
+  position: absolute;
+  padding:0;
+  top: 0;
+  right: 0;
+}
+
+#mission {
+  color: #666;
+  font-weight:bold;
+  padding: 2em;
+  margin-bottom:20px;
+  font-size: 85%;
+  border: solid 1px #B5C9D8;
+}
+
+.breadcrumb {
+  margin:0;
+  padding:0;
+  font-size: 85%;
+  margin-left:20px;
+}
+
+/* Menu styles */
+div.menu {
+  margin-top:15px;
+}
+
+#primary {
+  font-size: 85%;
+  line-height:normal;
+  padding:0px 0px 1px 20px;
+}
+
+#primary ul {
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+
+#primary li {
+  display:inline;
+}
+
+#primary a {
+  font-weight:bold;
+  display:block;
+  float:left;
+  padding:5px 14px 5px 14px;
+  margin: 0px 1px 0px 0px;
+  border: 1px solid #666;
+}
+
+#primary a {
+  background-position:0% 0px;
+}
+
+#primary a:hover {
+  background-position:0% -42px;
+  text-decoration:none;
+}
+
+#primary a.active {
+  background-position: 0% -84px;
+}
+
+#secondary {
+  padding-left:20px;
+  background: #6DA6E2; /*#347FD2;*/
+}
+#secondary ul {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+#secondary li {
+  margin:0;
+  padding:0;
+  display:inline;
+}
+
+#secondary li a {
+  float:left;
+  display:block;
+  color: #fff;
+  font-size: 85%;
+  text-decoration:none;
+  padding:0px 5px 0px 5px;
+}
+
+#secondary a:hover {
+  background:#2763A5;
+}
+
+#secondary a.active {
+  font-weight:bold;
+}
+
+/* Link styles */
+ul.links {
+  text-align:left;
+}
+
+ul.links li {
+  border-left: 1px solid #9cf;
+}
+
+.taxonomy {
+  margin:0;
+  padding:0;
+  display:inline;
+}
+
+.taxonomy ul.links li {
+  border:none;
+  padding:0 .1em 0 .2em;
+}
+
+.taxonomy ul.links li:after {
+  content: ",";
+}
+
+.taxonomy ul.links li.last:after {
+  content: "";
+}
+
+ul.links li.first {
+  padding-left:0;
+  border: none;
+}
+
+.links {
+  color: #999;
+}
+.links a {
+  padding:0 .1em 0 .1em;
+}
+
+.submitted, .taxonomy { 
+  font-size: 85%;
+  color: #999; 
+}
+
+/* Form styles */	
+input, textarea, textfield {
+  margin:0;
+  color: #000;
+  font-family: arial;
+  padding:1px;
+  font-size: 100%;
+}
+
+fieldset {
+  border: solid #ccc 1px;
+}
+
+input.form-checkbox, input.form-radio {
+  border: none;
+}
+
+#search .form-text, #user-login-form .form-text {
+  padding: 2px;
+}
+
+#search .button, 
+#search .form-submit,
+#user-login-form .button,
+#user-login-form .form-submit {
+  font-weight:bold;
+  border: 1px solid #666;
+}
+
+#node-form, #node-form .node-form {
+  overflow:auto;
+}
+
+#user-login-form {
+  text-align:left;
+}
+
+#user-login-form .item-list ul {
+  margin-top:10px;
+}
+
+/* Alerts, Status, Help Messages  */
+.messages {
+  min-height: 32px;                 /* icon height */
+  padding: 1.3em 1em .3em 52px;
+  border: 2px solid #ddd;
+  background: #eee;
+  margin: 10px 0;
+}
+
+div.error {
+  border: 2px solid #F00;
+}
+
+.messages ul {
+  padding: 0 0 0 20px;
+  margin: 0;
+}
+
+/* Footer styles */
+#footer-wrapper {
+  margin:0;
+  margin-top: 15px;
+}
+
+#footer {
+  text-align: center;
+  margin:0;
+  font-size: 85%;
+  padding: 1em;
+}
+
+/* Administration styles */
+div.admin {
+  padding: 0;
+}
+
+.admin-panel .body dl, .admin-panel .body p {
+  padding:10px;
+}
+
+.admin-panel h3 {
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+  margin-bottom: 0;
+  padding: 5px 5px 5px 30px;
+  font-size: 122%;
+}
+
+.admin-panel .body {
+  border-width: 0 1px 1px 1px;
+  border-style: solid; 
+}
+
+.comment h3.title, .comment h3.title a {
+  font-size: 122%;
+  font-weight:normal;
+  margin-bottom:3px;
+  margin-top:0;
+}
+
+.comment .picture, .node .picture {
+  float:left;
+  margin-right:15px;
+}
+
+.comment .new {
+  color: #FFC600;
+  font-weight:bold;
+}
+
+.comment .links {
+  text-align: right;
+}
+
+/* Poll styles */
+.poll .bar .foreground {
+  background: #2763A5;
+}
+
+.poll .bar {
+  padding:2px;
+  background: #BDCBDD;
+}
+
+/* Book styles */
+div.node div.content .book-navigation {
+  background: #eee;
+  margin:0;
+  padding:0;
+}
+
+div.node div.content .book-navigation ul.menu {
+  border:0;
+  border-top:1px solid #2763A5;
+  margin:0;
+  padding-bottom:10px;
+}
+
+div.node div.content .book-navigation .page-links {
+  background: #C1D4EA; /*#347FD2;*/
+  border:1px solid #2763A5;
+  border-width:1px 0 1px 0;
+  padding:5px;
+  margin:0;
+}
+
+/* Forum styles */
+#forum table {
+  width: 100%;
+}
+
+/* Pager styles */
+.pager {
+  text-align:center;
+  margin-top: 30px;
+}
+
+.pager  a, .pager-current {
+  padding:3px 8px 3px 8px;
+  margin:0 2px 0 2px;
+  font-weight:bold;
+  border: solid 1px #eee;
+}
+
+.pager-current {
+  color: #fff;
+  background-color: #666;  
+}
+
+/* Node, Block, Content styles */
+.node {
+  margin-bottom:15px;
+  padding-bottom:15px;
+}
+
+.node h2.title {
+  margin-bottom:.1em;
+}
+
+.node h2.title a {
+  color: #555;
+  font-size: 129%;
+  font-weight:normal;
+  font-family:verdana;
+  line-height:1.4em;
+}
+
+.node .content {
+  padding-top:10px;
+  padding-bottom:5px;
+}
+
+.sticky {
+  border-bottom: solid 3px #ddd;
+}
+
+.profile {
+  clear:none;
+}
+
+#sidebar-left .block, #sidebar-right .block {
+  border-bottom: solid #ddd 1px;
+  padding-bottom:15px;
+  margin-bottom:20px;
+}
+
+.block .content {
+  margin: 0.5em 0;
+}
+
+.block .item-list ul {
+  padding-left:0;
+}
+
+/**
+ * Status report colors.
+ */
+table.system-status-report tr.error, table.system-status-report tr.error th {
+  background-color: #fcc;
+  border-color: #ebb;
+  color: #200;
+} 
+table.system-status-report tr.warning, table.system-status-report tr.warning th {
+  background-color: #ffd;
+  border-color: #eeb;
+} 
+table.system-status-report tr.ok, table.system-status-report tr.ok th {
+  background-color: #dfd;
+  border-color: #beb;
+}

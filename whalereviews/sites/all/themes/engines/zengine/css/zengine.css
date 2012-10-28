@@ -1,0 +1,168 @@
+/**
+*   Styles that are a feature of Zengine
+*   $Id: zengine.css,v 1.1.2.7 2007/08/22 15:53:04 jjeff Exp $
+*/
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Comment styles */
+.comment {
+  margin:0px 0px 10px 0;
+  padding: 10px;
+}
+
+.comment-unpublished {
+  background-image: url(../images/unpublished.png);
+  background-position: center 20px;
+  background-repeat: no-repeat;
+}
+
+.comment-by-author {
+  background: none;
+  border: 1px solid;
+}
+
+.node-unpublished {
+  background-image: url(../images/unpublished.png);
+  background-position: center 20px;
+  background-repeat: no-repeat;
+}
+
+pre {
+  border: 1px solid #aaa;
+  padding: 0.75em 1.5em;
+}
+
+blockquote {
+  border: 1px 0px #ccc solid;
+  margin: 0.5em 1em;
+  padding: 0.3em;
+  font-style: italic;
+}
+
+code {
+  font-size: 100%;
+  font-family: Profont, 'lucida console', 'Courier New', Monaco, monospace;
+}
+
+img {
+  border: 0;
+}
+
+ol, ul, dl {
+  /*position: relative; */
+}
+
+abbr.created {
+  border-bottom: none;
+  text-decoration: none;
+}
+
+/** edit links for blocks and nodes **/
+
+.block, .node {
+  position: relative;
+}
+
+.block div.edit,
+.node div.edit {
+  position: absolute;
+  font-family: verdana,arial,helvetica,clean,sans-serif;
+  font-size: xx-small;
+  display: none;
+  z-index: 60;
+  top: 0;
+  right: 0;
+  color: #CCC;
+  float: right;
+}
+
+.block div.edit a,
+.node div.edit a {
+  color: #CCC;
+  background-color: #FFF;
+  display: block;
+  float: left;
+  margin-left: 2px;
+}
+
+.block:hover div.edit,
+.node:hover div.edit {
+  display: block;
+}
+
+.block div.edit:hover,
+.node div.edit:hover {
+  color: #000;
+}
+
+.block div.edit:hover a,
+.node div.edit:hover a {
+  color: #444;
+}
+
+.block div.edit a:hover,
+.node div.edit a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+/* move spans out for all affected */
+.block div.edit a.block-edit span,
+.node div.edit a.node-edit span,
+.block div.edit a.block-config span,
+.block div.edit a.block-edit-view span,
+.block div.edit a.block-edit-menu span {
+  position: relative;
+  left: -5000px;
+}
+
+/* add the specific size, backgrounds and hover */
+.block div.edit a.block-edit,
+.node div.edit a.node-edit {
+  height: 9px;
+  width: 26px;
+  background: no-repeat url(../images/butn-edit.png);
+}
+
+.block div.edit a.block-edit:hover,
+.node div.edit a.node-edit:hover {
+  background: no-repeat url(../images/butn-edit-over.png);
+  text-decoration: none !important;
+}
+
+.block div.edit a.block-config {
+  height: 9px;
+  width: 55px;
+  background: no-repeat url(../images/butn-config.png);
+}
+
+.block div.edit a.block-config:hover {
+  background: no-repeat url(../images/butn-config-over.png);
+  text-decoration: none !important;
+}
+
+.block div.edit a.block-edit-view {
+  height: 9px;
+  width: 55px;
+  background: no-repeat url(../images/butn-edit-view.png);
+}
+
+.block div.edit a.block-edit-view:hover {
+  background: no-repeat url(../images/butn-edit-view-over.png);
+  text-decoration: none !important;
+}
+
+.block div.edit a.block-edit-menu {
+  height: 9px;
+  width: 55px;
+  background: no-repeat url(../images/butn-edit-menu.png);
+}
+
+.block div.edit a.block-edit-menu:hover {
+  background: no-repeat url(../images/butn-edit-menu-over.png);
+  text-decoration: none !important;
+}

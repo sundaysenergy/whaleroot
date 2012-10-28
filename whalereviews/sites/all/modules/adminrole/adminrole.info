@@ -1,0 +1,13 @@
+name = Admin Role
+description = Create a role to be 'admin' and automatically assign all perms to that role.
+version = "DRUPAL-5"
+package = User Access
+; Information added by drupal.org packaging script on 2007-05-04
+version = "5.x-1.1"
+project = "adminrole"
+
+; Information added by drupal.org packaging script on 2007-06-23
+version = "5.x-1.4"
+project = "adminrole"
+datestamp = "1182579303"
+

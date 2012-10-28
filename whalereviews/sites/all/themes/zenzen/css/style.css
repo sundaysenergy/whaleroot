@@ -1,0 +1,717 @@
+/* @override 
+	http://whalereviews.com/sites/all/themes/zenzen/css/style.css
+	/sites/all/themes/zenzen/css/style.css
+	--
+	http://whalereviews.com/news
+	http://www.whalereviews.com/sites/all/themes/zenzen/css/style.css
+*/
+
+@CHARSET "UTF-8";
+
+/**
+*  $Id: style.css,v 1.1.2.3 2007/06/07 14:25:12 jjeff Exp $
+*  @file
+*  the default style.css file with most of the design information
+*/
+
+#page {
+	margin: 0 auto;
+	}
+
+/* Common styles *******************/
+
+a, a:link, a:visited {
+  	text-decoration: none;
+	}
+
+a:hover, a:focus {
+  	text-decoration: none;
+	}
+		
+h1.title, h1.title a, h1.title a:hover {
+  	font-family: "Helvetica", Arial, sans-serif;
+  	font-weight: normal;
+  	font-size: 200%;
+  	margin:0;
+  	margin-bottom:0px;
+  	line-height:normal;
+	}
+
+/* Header styles *******************/
+ 
+#logo-title {
+	height: 100px;
+  	padding: 10px;
+  	position: relative;
+	}
+
+#logo {
+  	vertical-align: baseline;
+	}
+
+#name-and-slogan {
+  	display: inline;
+	}
+
+#site-name {
+  	margin: 0;
+  	display: none;
+	}
+
+#site-name a, #site-name a:hover {
+  	font-family: "Helvetica", Arial, sans-serif;
+  	font-weight: normal;
+  	font-size: 176%;
+  	margin: 0;
+  	padding: 0;
+	}
+
+#site-slogan {
+  	color: #aaa;
+  	margin: 0;
+  	font-size: 85%;
+  	margin-left:20px;
+	}
+
+#search {
+  	position: absolute;
+  	padding:0;
+  	top: 0;
+  	right: 0;
+	}
+
+#mission {
+	display: none;
+  	color: #636466;
+  	font-weight:bold;
+  	padding: 2em;
+  	margin-bottom:20px;
+  	font-size: 85%;
+  	border: solid 1px #B5C9D8;
+	}
+
+.breadcrumb {
+	display: none;
+  	margin:0;
+  	padding:0;
+  	font-size: 85%;
+  	margin-left:20px;
+	}
+
+a.feed-icon {
+	display: none;
+	}
+
+/* Menu styles *******************/
+
+div.menu {
+	margin-top: 20px;
+	*margin-top: 10px;
+	}
+
+#primary {
+  	font-size: 85%;
+  	line-height: normal;
+  	padding: 0px 10px;
+	}
+
+#primary ul {
+  	padding: 0;
+  	margin: 0;
+  	list-style: none;
+	}
+
+#primary li {
+  	display: inline;
+	}
+
+#primary a {
+	color: #fff;
+  	font-weight: bold;
+  	display: block;
+  	padding: 2px 20px 2px 10px;
+  	margin: 2px 135px 2px 0px;
+	}
+
+#primary a:hover,
+#primary a.active,
+#primary a:focus {
+	*border: 0 !important;
+	*font-size: 100%;
+	background: url(../images/arrows.png) no-repeat center right;
+  	text-decoration: none;
+	}
+
+#secondary {
+  	padding-left:20px;
+  	background: #6DA6E2; /*#347FD2;*/
+	}
+	
+#secondary ul {
+  	margin:0;
+  	padding:0;
+  	list-style:none;
+	}
+#secondary li {
+  	margin:0;
+  	padding:0;
+  	display:inline;
+	}
+
+#secondary li a {
+  	float:left;
+  	display:block;
+  	color: #fff;
+  	font-size: 85%;
+  	text-decoration:none;
+  	padding:0px 5px 0px 5px;
+	}
+
+#secondary a:hover {
+  	background:#2763A5;
+	}
+
+#secondary a.active {
+  	font-weight:bold;
+	}
+
+/* Link styles *******************/
+
+ul.links {
+  	text-align:left;
+	}
+
+ul.links li {
+  	border-left: 1px solid #c3e8f6;
+	}
+
+.taxonomy {
+  	display: none;
+	}
+
+.taxonomy ul.links li {
+  	border:none;
+  	padding:0 .1em 0 .2em;
+	}
+
+.taxonomy ul.links li:after {
+  	content: ",";
+	}
+
+.taxonomy ul.links li.last:after {
+  	content: "";
+	}
+
+ul.links li.first {
+  	padding-left:0;
+  	border: none;
+	}
+
+.links {
+  	color: #999;
+	}
+	
+.links a {
+  	padding:0 .1em 0 .1em;
+	}
+
+.submitted, .taxonomy { 
+  	font-size: 85%;
+  	color: #c1c1c2; 
+  	margin-top: 10px;
+	}
+
+.submitted a { 
+  	color: #c1c1c2;
+	}
+
+.submitted a:hover { 
+  	color: #636466;
+	}
+	
+.field-field-album-name {
+	margin: 10px 0px 2px 0px;
+	}
+
+.field-field-label,
+.field-field-year,
+.field-field-favorite-track,
+.field-field-reason-for-acquiring {
+	margin: 2px 0px 0px 0px;
+	}
+	
+.field-field-label div.field-label,
+.field-field-album-name div.field-label,
+.field-field-artist div.field-label,
+.field-field-year div.field-label,
+.field-field-favorite-track div.field-label,
+.field-field-reason-for-acquiring div.field-label {
+	float: left;
+	}
+
+.field-field-favorite-track div.field-item,
+.field-field-album-name div.field-item {
+	font-style: oblique;
+	}
+
+.field-field-reason-for-acquiring div.field-item {
+	line-height: 1.4em;
+	}
+
+/* Form styles *******************/	
+
+input, textarea, textfield {
+  	margin:0;
+  	color: #000;
+  	font-family: "Helvetica", Arial, sans-serif;
+  	padding: 1px;
+  	font-size: 100%;
+	}
+
+fieldset {
+  	border: solid #ccc 1px;
+	}
+
+input.form-checkbox, input.form-radio {
+  	border: none;
+	}
+
+#search .form-text, #user-login-form .form-text {
+  	padding: 2px;
+	}
+
+#search .button, 
+#search .form-submit,
+#user-login-form .button,
+#user-login-form .form-submit {
+  	font-weight:bold;
+  	border: 1px solid #666;
+	}
+
+#node-form, #node-form .node-form {
+  	overflow:auto;
+	}
+
+#user-login-form {
+  	text-align:left;
+	}
+
+#user-login-form .item-list ul {
+  	margin-top:10px;
+	}
+	
+/* Contact Form ********************/
+
+#contact-mail-page div {
+	text-align: justify;
+	font-size: 85%;
+	line-height: 135%;
+	}
+
+#contact-mail-page div div.form-item {
+	font-size: 110%;
+	}
+
+#contact-mail-page #edit-submit {
+	cursor: pointer;
+	margin-bottom: 15px;
+	font-size: 100%; /*Controls text-size of form button on contact page*/
+	}
+
+#edit-homepage,
+#edit-pass,
+#edit-name,
+#edit-mail,
+#edit-subject {
+	width: 230px;
+	height: 20px;
+	padding: 0px;
+	border: #f7931d 1px solid;
+	border-top: #f7931d 2px solid;
+	margin-bottom: 3px;
+	}
+
+#edit-comment,
+#edit-message {
+	width: 230px;
+	padding: 0;
+	border: #f7931d 1px solid;
+	border-top: #f7931d 2px solid;
+	margin-bottom: 2px;
+	}
+
+#edit-delete,
+#edit-preview,
+#edit-submit {
+	cursor: pointer;
+	color: #636466;
+	background: #c3e8f6;
+	padding: 3px 5px;
+	border-bottom: #a2c1cd 2px solid;
+	border-right: #a2c1cd 2px solid;
+	border-top: #e0f3fa 2px solid;
+	border-left: #e0f3fa 2px solid;
+	}
+	
+#edit-delete,
+#edit-preview,
+#edit-submit {
+	font-size: 85%; /*Controls text-size of all form buttons except on contact page*/
+	}
+
+/* Alerts, Status, Help Messages  *******************/
+
+.messages {
+	color: #636466;
+	font-size: 85%;
+  	min-height: 32px;                 /* icon height */
+  	padding: 1.6em 1em 0em 52px;
+  	border: 2px solid #a2c1cd;
+  	background: #c3e8f6;
+  	margin: 0px 0 15px 0;
+	}
+
+div.error {
+	color: #636466;
+  	border: 2px solid #f7931d;
+	}
+
+.messages ul {
+  	padding: 0 0 0 20px;
+  	margin: 0;
+	}
+
+/* Footer styles *******************/
+
+#footer-wrapper {
+  	margin:0;
+  	margin-top: 10px;
+  	padding-bottom: 10px;
+	}
+
+#footer {
+	color: #fff;
+	background: #f7931d;
+  	text-align: center;
+  	margin: 0px 10px;
+  	font-size: 85%;
+  	padding: 10px;
+  	line-height: 13px;
+	}
+	
+#footer a {
+	color: #fff;
+	font-weight: bold;
+	text-decoration: underline;
+	}
+	
+#footer a:hover {
+	color: #636466;
+	}
+
+/* Administration styles *******************/
+
+div.admin {
+  	padding: 0;
+	}
+
+.admin-panel .body dl, .admin-panel .body p {
+  	padding:10px;
+	}
+
+.admin-panel h3 {
+  	border-width: 1px 1px 0 1px;
+  	border-style: solid;
+  	margin-bottom: 0;
+  	padding: 5px 5px 5px 30px;
+  	font-size: 122%;
+	}
+
+.admin-panel .body {
+  	border-width: 0 1px 1px 1px;
+  	border-style: solid; 
+	}
+
+div.comment {
+  	padding: 0px 0px 10px 0px;
+  	margin: 10px 0px;
+  	border-bottom: #c3e8f6 2px solid;
+	}
+
+.comment h3.title, .comment h3.title a {
+	font-size: 110%;
+  	margin: 0;
+  	color: #c1c1c2;
+  	font-weight:normal;
+  	font-family: "Helvetica", Arial, sans-serif;
+  	line-height:1.4em;
+	}
+
+.comment .content {
+	font-size: 85%;
+	line-height: 135%;
+	text-align: justify;
+	}
+
+.comment .picture, .node .picture {
+  	float:left;
+  	margin-right:15px;
+	}
+
+.comment .new {
+  	color: #f7931d;
+  	font-weight:bold;
+  	text-transform: uppercase;
+	}
+
+.comment .links {
+  	text-align: right;
+	}
+
+a.comment_delete,
+a.comment_edit,
+a.comment_reply,
+a.comment_add,
+a.comment_comments,
+span.comment_forbidden {
+	font-size: 85%;
+	padding: 0;
+	}
+	
+a.comment_add.active {
+	color: #c1c1c2;
+	}
+
+/* Poll styles *******************/
+
+.poll .bar .foreground {
+  	background: #2763A5;
+	}
+
+.poll .bar {
+  	padding:2px;
+  	background: #BDCBDD;
+	}
+
+/* Book styles *******************/
+
+div.node div.content .book-navigation {
+  	background: #eee;
+  	margin:0;
+  	padding:0;
+	}
+
+div.node div.content .book-navigation ul.menu {
+  	border:0;
+  	border-top:1px solid #2763A5;
+  	margin:0;
+  	padding-bottom:10px;
+	}
+
+div.node div.content .book-navigation .page-links {
+  	background: #C1D4EA; /*#347FD2;*/
+  	border:1px solid #2763A5;
+  	border-width:1px 0 1px 0;
+  	padding:5px;
+  	margin:0;
+	}
+
+/* Forum styles *******************/
+
+#forum table {
+  	width: 100%;
+	}
+
+/* Pager styles *******************/
+
+.pager {
+  	text-align:center;
+  	margin: 30px 0;
+	}
+
+.pager:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+	}
+
+.pager a {
+	color: #c1c1c2;
+  	padding:3px 8px 3px 8px;
+  	margin:0 2px 0 2px;
+	}
+
+.pager-current {
+  	padding:3px 8px 3px 8px;
+  	margin:0 2px 0 2px;
+  	border: 0;
+	}
+
+.pager strong.pager-current {
+	float: left;
+	clear: both;
+	font-size: 85%;
+	color: #f7931d;
+	background: #c3e8f6;
+	padding: 3px 5px;
+	border-top: #e0f3fa 2px solid;
+	border-left: #e0f3fa 2px solid;
+	border-bottom: #e0f3fa 2px solid;
+	border-right: #e0f3fa 2px solid;
+	width: 215px;
+	margin: 1px 0px;
+	}
+	
+a.pager-first.active,
+a.pager-previous.active,
+a.pager-next.active,
+a.pager-last.active {
+	float: left;
+	clear: both;
+	font-size: 85%;
+	color: #636466;
+	background: #c3e8f6;
+	padding: 3px 5px;
+	border-bottom: #a2c1cd 2px solid;
+	border-right: #a2c1cd 2px solid;
+	border-top: #e0f3fa 2px solid;
+	border-left: #e0f3fa 2px solid;
+	width: 215px;
+	margin: 1px 0px;
+	}
+
+/* Node, Block, Content styles *******************/
+
+#node-18 h2.title {
+	display: none;
+	}
+
+#node-18 div.content h2 a {
+	color: #636466;
+	}
+	
+.preview .node {
+	background: #fff;
+	}
+	
+#content h1.title {
+	display: none;
+	}
+	
+#lyric-credit {
+	text-align: right;
+	color: #a7a9ac;
+	margin: 0;
+	padding: 0;
+	}
+	
+#footnote {
+	color: #a7a9ac;
+	margin: 0;
+	margin-bottom: 10px;
+	padding: 0;
+	}
+	
+#footnote span {
+	color: #636466;
+	}
+	
+.node {
+  	margin-bottom: 20px;
+	}
+
+.node h2.title {
+	font-size: 90%;
+  	margin: 0;
+  	padding-bottom: 6px;
+  	border-bottom: #c3e8f6 5px solid;
+	}
+
+.node h2.title a {
+  	color: #636466;
+  	font-size: 129%;
+  	font-weight:normal;
+  	font-family: "Helvetica", Arial, sans-serif;
+  	line-height:1.4em;
+	}
+
+h2 {
+  	margin: 0;
+  	padding-bottom: 6px;
+  	border-bottom: #c3e8f6 5px solid;
+  	color: #636466;
+  	font-size: 129%;
+  	font-weight:normal;
+  	font-family: "Helvetica", Arial, sans-serif;
+  	line-height:1.4em;
+	}
+
+.node .content {
+	font-size: 87%;
+	line-height: 135%;
+	text-align: justify;
+  	padding: 0;	
+  	}
+
+#node-67 h2.title,
+#node-10 h2.title {
+	display: none;
+	}
+
+#node-10 div.content p {
+	margin-top: 0;
+	}
+	
+#guest-post {
+	color: #999;
+	padding: 10px;
+	border: 1px solid #f7931d;
+	}
+
+#guest-post span {
+	font-size: 129%;
+	}
+
+#guest-post p {
+	margin-bottom: 0;
+	}
+	
+.sticky {
+	}
+
+.profile {
+  	clear: none;
+	}
+
+#sidebar-left .block, #sidebar-right .block {
+  	padding-bottom:15px;
+  	margin-bottom:20px;
+	}
+
+.block .content {
+  	margin: 0.5em 0;
+	}
+
+.block .item-list ul {
+  	padding-left:0;
+	}
+
+/* Status report colors. *******************/
+
+table.system-status-report tr.error, table.system-status-report tr.error th {
+  	background-color: #fcc;
+  	border-color: #ebb;
+  	color: #200;
+	} 
+	
+table.system-status-report tr.warning, table.system-status-report tr.warning th {
+  	background-color: #ffd;
+  	border-color: #eeb;
+	} 
+	
+table.system-status-report tr.ok, table.system-status-report tr.ok th {
+  	background-color: #dfd;
+  	border-color: #beb;
+	}

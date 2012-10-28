@@ -1,0 +1,101 @@
+@CHARSET "UTF-8";
+/* $Id: layout.css,v 1.1.2.1 2007/06/19 22:30:16 zoo33 Exp $ */
+
+/**
+*  LAYOUT STYLES
+*
+*  Define CSS classes to create a table-free,
+*  3-column, 2-column, or single column layout 
+*  depending on whether blocks are enabled in the 
+*  left or right columns.
+*/
+
+/**
+ * Layout
+ */
+
+body {
+  padding: 30px; /* The margin around the page */
+}
+
+#page {
+  width: 900px; /* Main fixed width of page */
+  /*max-width: 1270px;*/ /* Use max-width instead of width if you want a fluid layout */
+  margin: 0 auto;
+}
+
+#header {
+  /*margin:  0 0 15px 0;*/ /* This provides spacing between header and container */
+  padding: 10px 20px 10px 20px;
+}
+
+#container {
+  padding: 15px 20px;
+}
+
+/* Optional: With 3 columns, require a minimum width of 980px to ensure there is enough horizontal space. */
+body.both-sidebars {
+  /*min-width: 980px;*/
+}
+/* Optional: With 2 columsn, require a minimum width of 780px. */
+body.sidebar-left, body.sidebar-right {
+  /*min-width: 780px;*/
+}
+
+/* We must define 100% width to avoid the body being too narrow for near-empty pages */
+#main {
+  float: left;
+  width: 100%;
+}
+
+/* So we move the #main container over the sidebars to compensate */
+body.sidebar-left #main {
+  margin-left: -215px;
+}
+body.sidebar-right #main {
+  margin-right: -215px;
+}
+body.both-sidebars #main {
+  margin: 0 -215px;
+}
+
+#squeeze {
+  position: relative;
+  /*padding: 0 15px;*/ /* This provides spacing between content and sidebars */
+}
+
+/* And add blanks left and right for the sidebars to fill */
+/* Note: A = B + C (see comments below) */
+body.sidebar-left #squeeze {
+  margin-left: 215px; /* A: The space between the page edge and the middle column */
+}
+body.sidebar-right #squeeze {
+  margin-right: 215px; /* A */
+}
+body.both-sidebars #squeeze {
+  margin: 0 215px; /* A */
+}
+
+/* We ensure the sidebars are still clickable using z-index */
+#container .sidebar {
+  margin: 0 0 10px;
+  width: 185px; /* B: The width of the sidebars */
+  float: left;
+  z-index: 2;
+  position: relative;
+}
+
+#sidebar-left {
+  padding-right: 30px; /* C: The space between sidebars and the middle column */
+}
+
+#sidebar-right {
+  padding-left: 30px; /* C */
+}
+
+#footer-wrapper {
+}
+
+#footer { 
+  padding: 10px 20px;
+}

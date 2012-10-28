@@ -1,0 +1,10 @@
+; $Id$
+name = Zen Basic
+engine = zengine
+description = Zen Basic based on the Zengine theme engine.
+version = "$Name:  $"
+; Information added by drupal.org packaging script on 2007-08-21
+version = "5.x-1.x-dev"
+project = "zen_basic"
+datestamp = "1187654953"
+

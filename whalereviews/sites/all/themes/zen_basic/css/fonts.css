@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+/* $Id: fonts.css,v 1.1.2.1 2007/06/19 22:30:16 zoo33 Exp $ */
+
+/**
+*   FONT STYLES 
+*
+*  Standardize font sizes and line-height across browsers 
+*/
+
+body {
+  font:12px Verdana, 'Bitstream Vera Sans', Arial, Helvetica, sans-serif;
+  *font-size:small;
+  *font:x-small;
+}
+
+table {
+  font-size: 95%;
+}
+
+select, input, textarea {
+  font:99% Verdana, 'Bitstream Vera Sans', Arial, Helvetica, sans-serif;
+}
+
+pre, code {
+  font:115% 'Lucida Console','Lucida Monospace','Lucida Typewriter','Bitstream Vera Sans Mono',Monaco,monospace;
+  *font-size:100%;
+}
+
+
+/* PAGE REGIONS */
+
+.breadcrumb {
+  font-size: 95%;
+}
+
+#footer {
+  font-size: 95%;
+}
+
+
+/* HEADINGS */
+
+h1.title
+
+  
+/* NODES */
+
+.node .submitted {
+  font-size: 95%;
+}
+
+
+/* BLOCKS */
+
+.sidebar .block {
+  margin-bottom: 15px;
+}
+
+h2.block-title {
+	font-size: 14px;
+	margin: 0 0 5px 0;
+}

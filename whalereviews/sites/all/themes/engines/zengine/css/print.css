@@ -1,0 +1,78 @@
+/* $Id: print.css,v 1.1.2.3 2007/06/07 14:23:30 jjeff Exp $ */
+
+/* white background, black text, arial font, decent font size */
+body.front, body.not-front {
+  background: transparent;
+  color: #000;
+  font-family: arial,helvetica,clean,sans-serif;
+  font-size: 12pt;
+}
+
+body.front #page, body.not-front #page {
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  width: 90%;
+}
+
+body.sidebar-right #main,
+body.sidebar-left #main,
+body.both-sidebars #main {
+  margin: 0;
+}
+
+body.sidebar-right #squeeze,
+body.sidebar-left #squeeze,
+body.both-sidebars #squeeze {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* underline all links */
+a:link, a:visited {
+  color: #520;
+  background: transparent;
+  text-decoration: underline !important;
+}
+
+/* don't underline header */
+#header a:link, #header a:visited {
+  text-decoration: none !important;	
+}
+
+/* CSS2 selector to add visible href after links */
+#main a:link:after, #main a:visited:after,
+.content a:link:after, .content a:visited:after {
+  content: " (" attr(href) ") ";
+  font-size: 80%;
+  font-weight: normal;
+}
+
+/* don't float floating things */
+#main, #container .sidebar {
+  float: none;
+  width: 100%;
+}
+
+.submitted {
+  color: #000;
+  font-family: "Times New Roman", Garamond, serif;
+  font-size: 10pt;
+}
+
+html body {
+  background: transparent;
+  width: auto;
+}
+
+/* Hide sidebars and nav elements */
+#primary, #secondary, #sidebar-left, #sidebar-right, #content-top, #content-bottom, #header-region,
+#search, #tabs, #menu, #mission, #footer-wrapper, #comment-form, #comments div.box h2,
+.book-navigation, .tabs, .links, .breadcrumb, .taxonomy, .pager, .feed-icon, .forum-topic-navigation {
+  visibility: hidden;
+  display: none;
+}
+
+#logo-title {
+  margin: 20pt 20pt 0 20pt;
+}

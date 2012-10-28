@@ -1,0 +1,102 @@
+/* @override 
+	http://whalereviews.com/sites/all/themes/zenzen/css/icons.css
+	http://www.whalereviews.com/sites/all/themes/zenzen/css/icons.css
+*/
+
+/*   $Id: icons.css,v 1.1 2007/05/06 23:51:14 jjeff Exp $ */
+
+/**
+*   ICON STYLES 
+*
+*  Puts all the references to icon images in one place.
+*/
+
+/* Leaf, collapsed, and expanded icons used for navigation ********************/
+
+.block li.leaf, ul.menu li.leaf {
+	list-style: none;
+  	list-style-image: none;
+	}
+
+.block li.collapsed, ul.menu li.collapsed {
+	list-style: none;
+  	list-style-image: none;
+	}
+
+.block li.expanded, ul.menu li.expanded {
+	list-style: none;
+  	list-style-image: none;
+	}
+
+.block li a.active {
+  text-decoration: none;
+	}
+
+.block ul li {
+	list-style: none;
+  	list-style-image: none;
+	}
+	
+/* Forum posts and recent blog posts ********************/
+
+.block-forum ul li {
+  	list-style-type:none;
+  	list-style-image: none;
+  	margin:0;
+  	padding:5px 0px 5px 20px;
+  	background-image: url(../images/page_text.gif);
+ 	background-repeat: no-repeat;
+ 	background-position: 0 .5em;
+	}
+
+.block-blog ul li {
+  	list-style-type:none;
+  	list-style-image: none;
+  	margin:0;
+  	padding:5px 0px 5px 20px;
+  	background-image: url(../images/blog.png);
+  	background-repeat: no-repeat;
+  	background-position: 0 .7em;
+	}
+	
+ul.tips {
+	padding-left: 15px;
+	*padding-left: 0px;
+	}
+
+/* Who's new & Who's online ********************/
+
+#block-user-2 ul li, #block-user-3 ul li {
+  	list-style-type:none;
+  	list-style-image: none;
+  	margin:0;
+  	padding:5px 0px 5px 20px;
+  	background-image: url(../images/icon_user.gif);
+  	background-repeat: no-repeat;
+  	background-position: 0 .5em;
+	}
+
+/* Status and Error icons ********************/
+
+div.status {
+  	background-image: url(../images/sweet-dude.png);
+  	background-repeat: no-repeat;
+  	background-position: 1em 50%;
+	}
+
+div.error {
+  	background-image: url(../images/oh-shit.png);
+  	background-repeat: no-repeat;
+  	background-position: 1em 50%;
+	}
+
+/* Node links such as add comments, User's blog, etc ********************/
+#main .node div.links {
+  	padding: 5px 0px 5px 0px;
+	}
+
+/* Administration panel ********************/
+
+.admin-panel h3{
+  	background: #6191C5 url(../images/cog.png) no-repeat .5em .5em;
+	}

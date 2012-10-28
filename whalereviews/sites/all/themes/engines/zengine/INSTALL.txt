@@ -1,0 +1,14 @@
+Zengine Theme Engine for Drupal 5.x
+
+
+Installation:
+1. Extract and copy the zengine archive folder content into your 
+   sites/all/themes/engines directory.
+
+2. Download a zengine theme (zenzen - http://drupal.org/project/zenzen 
+   or zen_basic - http://drupal.org/project/zen_basic) and copy 
+   it to your themes directory as you would for a normal theme. 
+   Enable the theme in: Administer -> Site Building -> Themes
+
+3. Make a copy of the theme and use this as the base of your
+   zengine-compatible theme.

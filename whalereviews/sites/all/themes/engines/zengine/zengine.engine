@@ -1,0 +1,489 @@
+<?php
+/* $Id: zengine.engine,v 1.1.2.10 2007/08/22 03:13:56 jjeff Exp $
+
+
+
+                                                 88
+                                                 ""
+
+888888888   ,adPPYba,  8b,dPPYba,    ,adPPYb,d8  88  8b,dPPYba,    ,adPPYba,
+     a8P"  a8P_____88  88P'   `"8a  a8"    `Y88  88  88P'   `"8a  a8P_____88
+  ,d8P'    8PP"""""""  88       88  8b       88  88  88       88  8PP"""""""
+,d8"       "8b,   ,aa  88       88  "8a,   ,d88  88  88       88  "8b,   ,aa
+888888888   `"Ybbd8"'  88       88   `"YbbdP"Y8  88  88       88   `"Ybbd8"'
+                                     aa,    ,88
+                                      "Y8bbdP" the CSS friendly theme engine
+
+
+
+
+*/
+
+/**
+ * @file
+ * PHPTemplate-based theme engine for Drupal
+ */
+
+// zengine implements allmost any of its magic through calls to phptemplate.engine
+require_once('themes/engines/phptemplate/phptemplate.engine');
+
+function zengine_init($template) {
+  return phptemplate_init($template);
+}
+
+function zengine_templates($directory = 'themes') {
+  $themes = array();
+  $files = drupal_system_listing('\.info$', $directory, 'filename');
+  foreach ($files as $file) {
+    $info = parse_ini_file($file->filename);
+    if ($info['engine'] == 'zengine') {
+      $themes[] = $file;
+    }
+  }
+
+  return $themes;
+}
+
+function zengine_regions() {
+  return array(
+     'left' => t('left sidebar'),
+     'right' => t('right sidebar'),
+     'content_top' => t('content top'),
+     'content_bottom' => t('content bottom'),
+     'header' => t('header'),
+     'footer' => t('footer')
+  );
+}
+
+// rewrite of _phptemplate_default()
+// changes are commented
+function _zengine_default($hook, $variables, $suggestions = array(), $extension = '.zen.php') {
+  global $theme_engine;
+
+  // Loop through any suggestions in FIFO order.
+  $suggestions = array_reverse($suggestions);
+  foreach ($suggestions as $suggestion) {
+    if (!empty($suggestion) && file_exists(path_to_theme() .'/'. $suggestion . $extension)) {
+      $file = path_to_theme() .'/'. $suggestion . $extension;
+      break;
+    }
+  }
+
+  if (!isset($file)) {
+    if (file_exists(path_to_theme() ."/$hook$extension")) {
+      $file = path_to_theme() ."/$hook$extension";
+    }
+    else {
+      // <-- added 'page' and 'search' to the following line -->
+      if (in_array($hook, array('node', 'block', 'box', 'comment', 'page', 'search'))) {
+      // <-- end changes -->
+        $file = path_to_engine() .'/'. $hook . $extension;
+      }
+      else {
+        $variables['hook'] = $hook;
+        watchdog('error', t('%engine.engine was instructed to override the %name theme function, but no valid template file was found.', array('%engine' => $theme_engine, '%name' => $hook)));
+        $file = path_to_engine() .'/default'. $extension;
+      }
+    }
+  }
+
+  if (isset($file)) {
+    return call_user_func('_'. $theme_engine .'_render', $file, $variables);
+  }
+}
+
+function zengine_features() {
+  return phptemplate_features();
+}
+
+function zengine_page($content, $show_blocks = TRUE) {
+  return phptemplate_page($content, $show_blocks);
+}
+
+function zengine_node($node, $teaser = 0, $page = 0) {
+  return phptemplate_node($node, $teaser, $page);
+}
+
+function zengine_comment($comment, $links = 0) {
+  return phptemplate_comment($comment, $links);
+}
+
+function zengine_block($block) {
+  return phptemplate_block($block);
+}
+
+function zengine_box($title, $content, $region = 'main') {
+  return phptemplate_box($title, $content, $region);
+}
+
+function _zengine_render($file, $variables) {
+  return _phptemplate_render($file, $variables);
+}
+
+
+/**
+ * This function contains the variables added by the Zen Engine
+ *
+ * The original variables can be found in the appropriate functions:
+ *   phptemplate_page()
+ *   phptemplate_node()
+ *   phptemplate_commnet()
+ *   phptemplate_block()
+ *
+ * The variables get exploded out from the $vars array so that for example
+ * $vars['title'] becomes $title
+ * $vars['links'] becomes $links
+ * etc... you get the jist
+ *
+ */
+function _zengine_variables($hook, $vars = array()) {
+  // get the currently logged in user
+  global $user, $theme;
+
+  static $counters = array();
+  $vars['count'] = $counters[$hook]['count']++;
+
+  // An anonymous user has a user id of zero.
+  $vars['logged_in'] = ($user->uid > 0);
+
+  // set a new $is_admin variable
+  // this variable is available to all templates
+  $vars['is_admin'] = user_access('access administration pages');
+
+  // Are we on a single node page?
+  $node_page = (arg(0) == 'node' && is_numeric(arg(1))) ? TRUE : FALSE;
+
+  switch ($hook) {
+    case 'page':
+
+      global $theme, $theme_key;
+
+      // in case the themer has accidentally put a style.css file in the dir
+      unset($vars['css']['all']['theme'][$vars['directory'] .'/style.css']);
+
+      $css_files = zengine_css_files($vars, $theme);
+      $css_files = zengine_css_files_process($css_files, $theme, $engine);
+
+      foreach ($css_files as $css_file) {
+        if ($css_file['discovered']) {
+          $vars['css'] = drupal_add_css($css_file['discovered'], 'theme', $css_file['media'] ? $css_file['media'] : 'all');
+        }
+      }
+      $vars['styles'] = drupal_get_css($vars['css']);
+
+
+      // @todo: IE hacks using conditional comments?
+
+      $body_classes = array();
+      // classes for body element
+      // allows advanced theming based on context (home page, node of certain type, etc.)
+      $body_classes[] = ($vars['is_front']) ? 'front' : 'not-front';
+      $body_classes[] = ($vars['logged_in']) ? 'logged-in' : 'not-logged-in';
+      if ($vars['node']->type) {
+        // if on an individual node page, put the node type in the body classes
+        $body_classes[] = 'ntype-'. form_clean_id($vars['node']->type);
+        // and add a class to note that we're on a node page
+        $body_classes[] = 'node-page';
+      }
+      switch (TRUE) {
+        case $vars['sidebar_left'] && $vars['sidebar_right'] :
+          $body_classes[] = 'both-sidebars';
+          break;
+        case $vars['sidebar_left'] :
+          $body_classes[] = 'sidebar-left';
+          break;
+        case $vars['sidebar_right'] :
+          $body_classes[] = 'sidebar-right';
+          break;
+      }
+      // implode with spaces
+      $vars['body_classes'] = implode(' ', $body_classes);
+
+      break;
+
+    case 'node':
+      if ($vars['submitted']) {
+        $vars['microdate'] = format_date($vars['node']->created, 'custom', "Y-m-d\TH:i:sO");
+        // if submitted is enabled
+        // we redefine the format for submitted
+        // adding microformats
+        $vars['submitted'] =
+          t('Posted <abbr class="created" title="!microdate">@date</abbr> by !username',
+            array(
+              '!username' => theme('username', $vars['node']),
+              '@date' => format_date($vars['node']->created,'custom', "F jS, Y"),
+              '!microdate' => $vars['microdate'],
+            )
+          );
+      }
+
+      // special classes for nodes
+      $node_classes = array('node');
+      if ($vars['sticky']) {
+        $node_classes[] = 'sticky';
+      }
+      if (!$node_page && $vars['count'] == 1 && !$_GET['page']) {
+        // if we're NOT on a node page and there's no pager
+        // add the class "node-first" to the first node
+        $node_classes[] = 'node-first';
+      }
+      if (!$vars['node']->status) {
+        $node_classes[] = 'node-unpublished';
+      }
+      if ($user->uid > 0 && $vars['node']->uid && $vars['node']->uid == $user->uid) {
+        // node is authored by current user
+        $node_classes[] = 'node-mine';
+      }
+      // class for node type: "ntype-page", "ntype-story", "ntype-my-custom-type", etc.
+      $node_classes[] = 'ntype-'. form_clean_id($vars['node']->type);
+
+      $node_classes[] = $vars['zebra'];
+
+      // implode with spaces
+      $vars['node_classes'] = implode(' ', $node_classes);
+
+      if (!$vars['page'] && node_access('update', $vars['node'])) {
+        $vars['edit_links_array']['edit'] = l('<span>'. t('edit') .'</span>', 'node/'. $vars['node']->nid .'/edit', array('title'=>'edit this content item', 'class'=>'node-edit'), drupal_get_destination(), NULL, FALSE, TRUE);
+        $vars['edit_links'] = '<div class="edit">'. implode(' ', $vars['edit_links_array']) .'</div>';
+      }
+
+
+      break;
+
+    case 'comment':
+      // we load the node object that the current comment is attached to
+      $node = node_load($vars['comment']->nid);
+
+      // if the author of this comment is equal to the author of the node, we set a variable
+      // then in our theme we can theme this comment differently to stand out
+      $vars['author_comment'] = $vars['comment']->uid == $node->uid ? TRUE : FALSE;
+
+      $comment_classes = array('comment');
+
+      if ($vars['comment']->status == COMMENT_NOT_PUBLISHED) {
+        $comment_classes[] = 'comment-unpublished';
+      }
+      if ($vars['author_comment']) {
+        // comment is by the node author
+        $comment_classes[] = 'comment-by-author';
+      }
+      if ($vars['comment']->uid == 0) {
+        // comment is by an anonymous user
+        $comment_classes[] = 'comment-by-anon';
+      }
+      if ($user->uid && $vars['comment']->uid == $user->uid) {
+        // comment was posted by current user
+        $comment_classes[] = 'comment-mine';
+      }
+      $comment_classes[] = $vars['zebra'];
+
+      $vars['comment_classes'] = implode(' ', $comment_classes);
+
+      // if comment subjects are disabled, don't display 'em
+      if (variable_get('comment_subject_field', 1) == 0) {
+        $vars['title'] = '';
+      }
+
+      break;
+
+    case 'block' :
+      $block = $vars['block'];
+      $block_classes[] = 'block';
+      $block_classes[] = 'block-'. form_clean_id($block->module);
+      $block_classes[] = $vars['zebra'];
+      $vars['block_classes'] = implode(' ', $block_classes);
+
+      if (user_access('administer blocks')) {
+
+        if ($block->module == 'block') {
+          $edit_links[] = l('<span>'. t('edit block') .'</span>', 'admin/build/block/configure/'. $block->module .'/'. $block->delta, array('title' => t('edit the content of this block'), 'class' => 'block-edit'), drupal_get_destination(), NULL, FALSE, TRUE);
+        }
+        else {
+          $edit_links[] = l('<span>'. t('configure') .'</span>', 'admin/build/block/configure/'. $block->module .'/'. $block->delta, array('title' => t('configure this block'), 'class' => 'block-config'), drupal_get_destination(), NULL, FALSE, TRUE);
+        }
+
+        if ($block->module == 'views') {
+          //$view = views_get_view($block->delta);
+          $edit_links[] = l('<span>'. t('edit view') .'</span>', 'admin/build/views/'. $block->delta .'/edit', array('title' => t('edit the view that defines this block'), 'class' => 'block-edit-view'), drupal_get_destination(), 'edit-block', FALSE, TRUE);
+        }
+        elseif ($block->module == 'menu' || ($block->module == 'user' && $block->delta == 1)) {
+          $edit_links[] = l('<span>'. t('edit menu') .'</span>', 'admin/build/menu', array('title' => t('edit the menu that defines this block'), 'class' => 'block-edit-menu'), drupal_get_destination(), NULL, FALSE, TRUE);
+        }
+        $vars['edit_links_array'] = $edit_links;
+        $vars['edit_links'] = '<div class="edit">'. implode(' ', $edit_links) .'</div>';
+      }
+
+  }
+
+  // allow theme to add/override variables
+  // Theme should define a function as follows
+  // function _themename_variables($hook, $vars = array()) {
+  //   // add variables
+  //   return $vars;
+  // }
+  $variables_function = '_'. $theme .'_variables';
+  if (function_exists($variables_function)) {
+    $new_vars = call_user_func($variables_function, $hook, $vars);
+    if (is_array($new_vars)) {
+      $vars = array_merge($vars, $new_vars);
+    }
+  }
+
+  return $vars;
+}
+
+
+/**
+ * Assemble a list of CSS files associated with this theme
+ * Each CSS entry requires the filename (e.g. colors.css)
+ * However, additional values can be added:
+ *   - file => the name of the file to find
+ *   - media => the CSS media type (default 'all')
+ *   - path => the path to this file (discovered by specificity if omitted)
+ */
+function zengine_css_files(&$vars, $theme) {
+  $css_files = array(
+    'zengine' => array('file' => 'zengine.css', 'media' => 'all'), // zengine "helper" styles
+    'fonts' => array('file' => 'fonts.css', 'media' => 'all'),     // font unification
+    'layout' => array('file' => 'layout.css', 'media' => 'all'),   // column layout
+    'icons' => array('file' => 'icons.css', 'media' => 'all'),     // icons
+    'colors' => array('file' => 'colors.css', 'media' => 'all'),   // colors and backgrounds
+    'style' => array('file' => 'style.css', 'media' => 'all'),     // default styles - most themes will override
+    'print' => array('file' => 'print.css', 'media' => 'print'),   // print styles
+  );
+
+  // Allow theme to override css files and/or add it's own
+  $css_func = '_'. $theme .'_css';
+  if (function_exists($css_func)) {
+    $css_func($css_files, $vars);
+  }
+
+  // Invoke hook_zengine_css
+  // allow modules to add/alter css files
+  foreach (module_implements('zengine_css') as $module) {
+    $function = $module .'_zengine_css';
+    $function($css_files, $vars, $theme);
+  }
+  return $css_files;
+}
+
+/**
+ * Discover the CSS files for the specified theme
+ * and insert them into the $css_files array.
+ */
+function zengine_css_files_process($css_files, $theme = NULL) {
+  if (!$theme) {
+    $theme = path_to_theme();
+  }
+  $themes = list_themes();
+  $theme_css_path =  dirname($themes[$theme]->filename) .'/css/';
+  $engines = list_theme_engines();
+  $engine_css_path = dirname($engines['zengine']->filename) .'/css/';
+
+  foreach ($css_files as $key => $css_file) {
+    $css_path = FALSE;
+    if ($css_file['path'] && file_exists($css_file['path'] .'/'. $css_file['file'])) {
+      // if there's a path defined for this rule, look for the file there
+      // this could allow a theme to look for CSS in the files directory
+      // dynamic CSS files, anyone?
+      $css_path = $css_file['path'] .'/'. $css_file['file'];
+    }
+    elseif (file_exists($theme_css_path . $css_file['file'])) {
+      $css_path = $theme_css_path . $css_file['file'];
+    }
+    elseif (file_exists($engine_css_path . $css_file['file'])) {
+      $css_path = $engine_css_path . $css_file['file'];
+    }
+    if ($css_path) {
+      $css_files[$key]['discovered'] = $css_path;
+    }
+  }
+
+  return $css_files;
+}
+
+/**
+ * Format a single result entry of a search query. This function is normally
+ * called by theme_search_page() or hook_search_page().
+ *
+ * @param $item
+ *   A single search result as returned by hook_search(). The result should be
+ *   an array with keys "link", "title", "type", "user", "date", and "snippet".
+ *   Optionally, "extra" can be an array of extra info to show along with the
+ *   result.
+ * @param $type
+ *   The type of item found, such as "user" or "node".
+ *
+ * @ingroup themeable
+ */
+function zengine_search_item($item, $type) {
+  $vars = array(
+    'title'        => check_plain($item['title']),
+    'link'         => check_url($item['link']),
+    'node_type'    => $item['type'],
+    'user'         => $item['user'],
+    'date'         => $item['date'],
+    'snippet'      => $item['snippet'],
+    'extra'        => $item['extra'],    // an array of extra stuff to display
+    'item'         => $item,             // the whole $item array, just for fun
+    'search_type'  => $type,             // 'user', 'node', or other search type
+  );
+
+  $suggestions = array(
+    'search',                           // search.zen.php
+    'search-'. $vars['search_type'],    // search-node.zen.php, search-user.zen.php, etc...
+    'search-'. $vars['node_type'],      // search-blog.zen.php, search-story.zen.php, etc.
+    'search-'. $vars['search_type'] .'-'. $vars['node_type'],
+  );
+  return _phptemplate_callback('search', $vars, $suggestions);
+}
+
+/**
+ * Overriding theme_comment_wrapper to add CSS id around all comments
+ * and add "Comments" title above
+ */
+function zengine_comment_wrapper($content) {
+  return '<div id="comments"><h2 id="comments-title" class="title">'. t('Comments') .'</h2>'. $content .'</div>';
+}
+
+/**
+ * theme_username with rel=nofollow added for commentors
+ */
+function zengine_username($object) {
+
+  if ($object->uid && $object->name) {
+    // Shorten the name when it is too long or it will break many tables.
+    if (drupal_strlen($object->name) > 20) {
+      $name = drupal_substr($object->name, 0, 15) .'...';
+    }
+    else {
+      $name = $object->name;
+    }
+
+    if (user_access('access user profiles')) {
+      $output = l($name, 'user/'. $object->uid, array('title' => t('View user profile.')));
+    }
+    else {
+      $output = check_plain($name);
+    }
+  }
+  else if ($object->name) {
+    // Sometimes modules display content composed by people who are
+    // not registered members of the site (e.g. mailing list or news
+    // aggregator modules). This clause enables modules to display
+    // the true author of the content.
+    if ($object->homepage) {
+      $output = l($object->name, $object->homepage, array('rel' => 'nofollow'));
+    }
+    else {
+      $output = check_plain($object->name);
+    }
+
+    $output .= ' ('. t('not verified') .')';
+  }
+  else {
+    $output = variable_get('anonymous', t('Anonymous'));
+  }
+
+  return $output;
+}

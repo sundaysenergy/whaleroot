@@ -1,0 +1,114 @@
+@CHARSET "UTF-8";
+/* $Id: style.css,v 1.1.2.1 2007/06/19 22:30:16 zoo33 Exp $ */
+
+
+/* COMMON */
+
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: underline;
+}
+		
+td, th {
+  padding: 5px;
+}
+
+
+/* HEADER */
+ 
+#logo-title {
+  position: relative;
+}
+
+#logo {
+  vertical-align: bottom;
+}
+
+#name-and-slogan {
+  display: inline;
+}
+
+#site-name {
+  font-size: 2.2em;
+  margin: 0;
+  display: inline;
+}
+
+#site-name a, #site-name a:hover {
+  margin: 0;
+  padding: 0;
+}
+
+#site-slogan {
+  color: #aaa;
+  margin: 0;
+  margin-left:20px;
+}
+
+#search {
+  position: absolute;
+  padding:0;
+  bottom: 0;
+  right: 0;
+}
+
+.breadcrumb {
+  margin: 10px 0 0 0;
+  padding:0;
+}
+
+#mission, .messages {
+  padding: 5px;
+  background-color: #EEE;
+  border: 1px solid #CCC;
+}
+
+
+/* NAVIGATION MENU */
+
+#navigation {
+  padding: 4px 0 0 0;
+}
+
+#primary {
+  line-height:normal;
+}
+
+#primary ul {
+  padding:0;
+  margin:0;
+  list-style:none;
+}
+
+#primary li {
+  float: left;
+  margin-right: 10px;
+}
+
+#secondary {
+  line-height: normal;
+  padding-left:20px;
+}
+#secondary ul {
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+#secondary li {
+  float: left;
+  margin-right: 10px;
+}
+
+
+/* NODES */
+
+.node {
+  margin-bottom: 10px;
+}
+
+.node .links {
+	margin-top: 10px;
+}
